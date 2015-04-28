@@ -26,16 +26,16 @@ public class DataMungingFootball {
         return cleanList;
     }
 
-    public int doCompare(List<String> myTestList) {
-        int returnDay = 0;
-        int smallestSpread = Integer.MAX_VALUE;
+    public String doCompare(List<String> myTestList) {
+        String returnDay = "";
+        int smallest = Integer.MAX_VALUE;
         for (String line : myTestList) {
             String[] splitRow = line.split("\\s+");
-            int day = Integer.parseInt(splitRow[0]);
-            int maxTemp = Integer.parseInt(splitRow[1]);
-            int minTemp = Integer.parseInt(splitRow[2]);
-            if ((maxTemp - minTemp) < smallestSpread) {
-                smallestSpread = maxTemp - minTemp;
+            String day = splitRow[1];
+            int max = Integer.parseInt(splitRow[6]);
+            int min = Integer.parseInt(splitRow[7]);
+            if ((max - min) < smallest) {
+                smallest = max - min;
                 returnDay = day;
             }
         }

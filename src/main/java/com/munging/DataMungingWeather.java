@@ -11,6 +11,19 @@ public class DataMungingWeather {
     }
 
     public int doCompare(List<String> myTestList) {
-        return 0;
+        int returnDay = 0;
+        int smallestSpread = Integer.MAX_VALUE;
+        for (String line : myTestList) {
+            String[] splitRow = line.split("\\s+");
+            int day = Integer.parseInt(splitRow[0]);
+            int maxTemp = Integer.parseInt(splitRow[1]);
+            int minTemp = Integer.parseInt(splitRow[2]);
+            if ((maxTemp - minTemp) < smallestSpread) {
+                smallestSpread = maxTemp - minTemp;
+                returnDay = day;
+            }
+        }
+
+        return returnDay;
     }
 }

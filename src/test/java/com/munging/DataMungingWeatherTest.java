@@ -30,4 +30,14 @@ public class DataMungingWeatherTest {
         List<String> myTestList = Arrays.asList("1 44 33", "2 99 98");
         Assert.assertThat(dataMungingWeather.doCompare(myTestList), is(2));
     }
+
+    @Test
+    public void testCanReadAllTheLinesFromFile() throws Exception {
+        Assert.assertThat(dataMungingWeather.readFileFromResources().isEmpty(), is(false));
+    }
+
+    @Test
+    public void testCanCompareTheLinesReadFromTheFile() throws Exception {
+        Assert.assertThat(dataMungingWeather.doCompare(dataMungingWeather.readFileFromResources()), is(999));
+    }
 }

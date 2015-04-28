@@ -1,13 +1,17 @@
 package com.munging;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class DataMungingWeather {
 
-    public URL readFileFromResources() {
+    public List<String> readFileFromResources() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        return classLoader.getResource("weather.dat");
+        URL fileURI = classLoader.getResource("weather.dat");
+        return Files.readAllLines(Paths.get(fileURI.getFile()));
     }
 
     public int doCompare(List<String> myTestList) {

@@ -22,7 +22,7 @@ public class DataMungingWeatherTest {
 
     @Test
     public void testCanReadFileFromResources() throws Exception {
-        Assert.assertThat(dataMungingWeather.readFileFromResources(), is(not(nullValue())));
+        Assert.assertThat(dataMungingWeather.cleanUpStream(dataMungingWeather.readFileLines()), is(not(nullValue())));
     }
 
     @Test
@@ -33,11 +33,19 @@ public class DataMungingWeatherTest {
 
     @Test
     public void testCanReadAllTheLinesFromFile() throws Exception {
-        Assert.assertThat(dataMungingWeather.readFileFromResources().isEmpty(), is(false));
+        Assert.assertThat(dataMungingWeather.cleanUpStream(dataMungingWeather.readFileLines()).isEmpty(), is(false));
     }
 
     @Test
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
-        Assert.assertThat(dataMungingWeather.doCompare(dataMungingWeather.readFileFromResources()), is(999));
+        Assert.assertThat(dataMungingWeather.doCompare(
+                dataMungingWeather.cleanUpStream(
+                        dataMungingWeather.readFileLines())), is(999));
+    }
+
+    @Test
+    public void testCanCleanUpAListOfStrings() throws Exception {
+        List<String> myTestList = Arrays.asList("1 44* 33", "2 99 98", "a f b d e", "1* 23 44");
+        Assert.assertThat(dataMungingWeather.cleanUpStream(myTestList.stream()), is(Arrays.asList("1 44 33", "2 99 98", "1 23 44")));
     }
 }

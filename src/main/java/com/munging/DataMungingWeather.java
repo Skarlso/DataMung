@@ -5,13 +5,25 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DataMungingWeather {
 
-    public List<String> readFileFromResources() throws IOException {
+    public Stream<String> readFileLines() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        URL fileURI = classLoader.getResource("weather.dat");
-        return Files.readAllLines(Paths.get(fileURI.getFile()));
+        URL fileUrl = classLoader.getResource("weather.dat");
+        assert fileUrl != null;
+        Stream<String> dirtyStream = Files.lines(Paths.get(fileUrl.getFile()));
+        return dirtyStream;
+    }
+
+    public List<String> cleanUpStream(Stream<String> dirtyStream) throws IOException {
+        List<String> cleanList = dirtyStream
+                .map(line -> line.trim().replaceAll("\\*", ""))
+                .filter(line -> line.length() > 0 && Character.isDigit(line.charAt(0)))
+                .collect(Collectors.toList());
+        return cleanList;
     }
 
     public int doCompare(List<String> myTestList) {

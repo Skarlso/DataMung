@@ -15,24 +15,24 @@ public class DataMungingFootball extends Munger {
     }
 
     public String doCompare(List<String> myTestList) {
-        return super.doCompare(myTestList, new FootballCompare());
-    }
+        int teamNameRow = 1;
+        int scoreFor = 6;
+        int scoredAgainst = 7;
 
-    private class FootballCompare implements CompareBy {
-
-        @Override
-        public int returnRow() {
-            return 1;
+        String teamName = "";
+        int smallest = Integer.MAX_VALUE;
+        for (String line : myTestList) {
+            String[] splitRow = line.split("\\s+");
+            String name = splitRow[teamNameRow];
+            int max = Integer.parseInt(splitRow[scoreFor]);
+            int min = Integer.parseInt(splitRow[scoredAgainst]);
+            if ((max - min) < smallest) {
+                smallest = max - min;
+                teamName = name;
+            }
         }
 
-        @Override
-        public int minimumRow() {
-            return 6;
-        }
+        return teamName;
 
-        @Override
-        public int maximumRow() {
-            return 7;
-        }
     }
 }

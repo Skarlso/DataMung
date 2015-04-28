@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Munger {
+public abstract class Munger {
 
 
     public Stream<String> readFileLines(String filename) throws IOException {
@@ -27,20 +27,5 @@ public class Munger {
         return cleanList;
     }
 
-    public String doCompare(List<String> myTestList, CompareBy compareBy) {
-        String returnDay = "";
-        int smallest = Integer.MAX_VALUE;
-        for (String line : myTestList) {
-            String[] splitRow = line.split("\\s+");
-            String day = splitRow[compareBy.returnRow()];
-            int max = Integer.parseInt(splitRow[compareBy.minimumRow()]);
-            int min = Integer.parseInt(splitRow[compareBy.maximumRow()]);
-            if ((max - min) < smallest) {
-                smallest = max - min;
-                returnDay = day;
-            }
-        }
-
-        return returnDay;
-    }
+    public abstract String doCompare(List<String> myTestList);
 }

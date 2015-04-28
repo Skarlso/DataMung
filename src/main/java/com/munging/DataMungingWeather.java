@@ -15,24 +15,24 @@ public class DataMungingWeather extends Munger {
     }
 
     public String doCompare(List<String> myTestList) {
-        return super.doCompare(myTestList, new WeatherCompare());
-    }
+        int dayRow = 1;
+        int minimumTemp = 1;
+        int maximumTemp = 2;
 
-    private class WeatherCompare implements CompareBy {
-
-        @Override
-        public int returnRow() {
-            return 0;
+        String day = "";
+        int smallest = Integer.MAX_VALUE;
+        for (String line : myTestList) {
+            String[] splitRow = line.split("\\s+");
+            String name = splitRow[dayRow];
+            int max = Integer.parseInt(splitRow[minimumTemp]);
+            int min = Integer.parseInt(splitRow[maximumTemp]);
+            if ((max - min) < smallest) {
+                smallest = max - min;
+                day = name;
+            }
         }
 
-        @Override
-        public int minimumRow() {
-            return 1;
-        }
+        return day;
 
-        @Override
-        public int maximumRow() {
-            return 2;
-        }
     }
 }

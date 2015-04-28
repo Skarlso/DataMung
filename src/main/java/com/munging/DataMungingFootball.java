@@ -15,6 +15,24 @@ public class DataMungingFootball extends Munger {
     }
 
     public String doCompare(List<String> myTestList) {
-        return super.doCompare(myTestList, 1, 6, 7);
+        return super.doCompare(myTestList, new FootballCompare());
+    }
+
+    private class FootballCompare implements CompareBy {
+
+        @Override
+        public int returnRow() {
+            return 1;
+        }
+
+        @Override
+        public int minimumRow() {
+            return 6;
+        }
+
+        @Override
+        public int maximumRow() {
+            return 7;
+        }
     }
 }

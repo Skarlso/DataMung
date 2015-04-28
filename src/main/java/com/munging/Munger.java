@@ -27,14 +27,14 @@ public class Munger {
         return cleanList;
     }
 
-    public String doCompare(List<String> myTestList, int nameRow, int compareRowOne, int compareRowTwo) {
+    public String doCompare(List<String> myTestList, CompareBy compareBy) {
         String returnDay = "";
         int smallest = Integer.MAX_VALUE;
         for (String line : myTestList) {
             String[] splitRow = line.split("\\s+");
-            String day = splitRow[nameRow];
-            int max = Integer.parseInt(splitRow[compareRowOne]);
-            int min = Integer.parseInt(splitRow[compareRowTwo]);
+            String day = splitRow[compareBy.returnRow()];
+            int max = Integer.parseInt(splitRow[compareBy.minimumRow()]);
+            int min = Integer.parseInt(splitRow[compareBy.maximumRow()]);
             if ((max - min) < smallest) {
                 smallest = max - min;
                 returnDay = day;

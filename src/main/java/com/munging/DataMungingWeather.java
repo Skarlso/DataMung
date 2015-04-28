@@ -15,6 +15,24 @@ public class DataMungingWeather extends Munger {
     }
 
     public String doCompare(List<String> myTestList) {
-        return super.doCompare(myTestList, 0, 1, 2);
+        return super.doCompare(myTestList, new WeatherCompare());
+    }
+
+    private class WeatherCompare implements CompareBy {
+
+        @Override
+        public int returnRow() {
+            return 0;
+        }
+
+        @Override
+        public int minimumRow() {
+            return 1;
+        }
+
+        @Override
+        public int maximumRow() {
+            return 2;
+        }
     }
 }

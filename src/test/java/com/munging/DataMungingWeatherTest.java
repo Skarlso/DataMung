@@ -28,7 +28,7 @@ public class DataMungingWeatherTest {
     @Test
     public void testCanCompareAListOfSpacedNumbers() throws Exception {
         List<String> myTestList = Arrays.asList("1 44 33", "2 99 98");
-        Assert.assertThat(dataMungingWeather.doCompare(myTestList), is(2));
+        Assert.assertThat(dataMungingWeather.doCompare(myTestList), is("2"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class DataMungingWeatherTest {
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
         Assert.assertThat(dataMungingWeather.doCompare(
                 dataMungingWeather.cleanUpStream(
-                        dataMungingWeather.readFileLines())), is(14));
+                        dataMungingWeather.readFileLines())), is("14"));
     }
 
     @Test

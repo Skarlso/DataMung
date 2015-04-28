@@ -40,7 +40,7 @@ public class DataMungingWeatherTest {
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
         Assert.assertThat(dataMungingWeather.doCompare(
                 dataMungingWeather.cleanUpStream(
-                        dataMungingWeather.readFileLines())), is(999));
+                        dataMungingWeather.readFileLines())), is(14));
     }
 
     @Test

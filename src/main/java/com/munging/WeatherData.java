@@ -14,4 +14,9 @@ public class WeatherData implements Data {
     public int getDifference() {
         return maximumTemp - minimumTemp;
     }
+
+    @Override
+    public String getReturnValue() {
+        return dayNumber;
+    }
 }

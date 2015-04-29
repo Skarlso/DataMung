@@ -16,9 +16,9 @@ public class DataMungingFootball extends Munger {
         return super.cleanUpStream(dirtyStream, '-', gatherFootballData);
     }
 
-    public String returnMinimumDifference(List<Data> footballDatas) {
-        String teamName = ((FootballData)footballDatas.stream().min(Comparator.comparing(Data::getDifference)).get()).teamName;
-        return teamName;
+    public Data returnMinimumDifference(List<Data> footballDatas) {
+        Data footBallData = footballDatas.stream().min(Comparator.comparing(Data::getDifference)).get();
+        return footBallData;
     }
 
     public Function<String, Data> gatherFootballData = line -> {

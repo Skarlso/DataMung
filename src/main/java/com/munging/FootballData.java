@@ -16,7 +16,7 @@ public class FootballData implements Data {
         return maxScore - minScore;
     }
 
-    public String getReturnValue() {
+    public String getTeamName() {
         return this.teamName;
     }
 }

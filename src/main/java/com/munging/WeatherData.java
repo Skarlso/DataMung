@@ -15,8 +15,7 @@ public class WeatherData implements Data {
         return maximumTemp - minimumTemp;
     }
 
-    @Override
-    public String getReturnValue() {
+    public String getDayNumber() {
         return dayNumber;
     }
 }

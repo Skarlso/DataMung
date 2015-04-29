@@ -30,7 +30,7 @@ public class DataMungingWeatherTest {
         WeatherData w1 = new WeatherData("1", 33, 44);
         WeatherData w2 = new WeatherData("2", 98, 99);
         List<Data> myTestList = Arrays.asList(w1, w2);
-        Assert.assertThat(dataMungingWeather.returnMinimumDifference(myTestList).getReturnValue(), is("2"));
+        Assert.assertThat(((WeatherData)dataMungingWeather.returnMinimumDifference(myTestList)).getDayNumber(), is("2"));
     }
 
     @Test
@@ -40,8 +40,8 @@ public class DataMungingWeatherTest {
 
     @Test
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
-        Assert.assertThat(dataMungingWeather.returnMinimumDifference(
+        Assert.assertThat(((WeatherData)dataMungingWeather.returnMinimumDifference(
                 dataMungingWeather.cleanUpStream(
-                        dataMungingWeather.readFileLines())).getReturnValue(), is("14"));
+                        dataMungingWeather.readFileLines()))).getDayNumber(), is("14"));
     }
 }

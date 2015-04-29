@@ -1,16 +1,18 @@
 package com.munging;
 
 
-public class FootballData {
+public class FootballData implements Data {
+    String teamName;
     int minScore;
     int maxScore;
 
-    public FootballData(int minScore, int maxScore) {
+    public FootballData(String teamName, int minScore, int maxScore) {
+        this.teamName = teamName;
         this.minScore = minScore;
         this.maxScore = maxScore;
     }
 
     public int getDifference() {
-        return minScore - maxScore;
+        return maxScore - minScore;
     }
 }

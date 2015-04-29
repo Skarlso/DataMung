@@ -5,6 +5,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,13 +20,14 @@ public abstract class Munger {
         return dirtyStream;
     }
 
-    public List<String> cleanUpStream(Stream<String> dirtyStream, Character character) throws IOException {
-        List<String> cleanList = dirtyStream
+    public List<Data> cleanUpStream(Stream<String> dirtyStream, Character character, Function<String, Data> mapper) throws IOException {
+        List<Data> cleanList = dirtyStream
                 .map(line -> line.trim().replaceAll(String.format("\\%s", character), ""))
                 .filter(line -> line.length() > 0 && Character.isDigit(line.charAt(0)))
+                .map(mapper)
                 .collect(Collectors.toList());
         return cleanList;
     }
 
-    public abstract String doCompare(List<String> myTestList);
+    public abstract String doCompare(List<Data> myTestList);
 }

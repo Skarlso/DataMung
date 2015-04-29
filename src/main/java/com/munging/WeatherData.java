@@ -1,6 +1,6 @@
 package com.munging;
 
-public class WeatherData {
+public class WeatherData implements Data {
     String dayNumber;
     int minimumTemp;
     int maximumTemp;
@@ -12,6 +12,6 @@ public class WeatherData {
     }
 
     public int getDifference() {
-        return minimumTemp - maximumTemp;
+        return maximumTemp - minimumTemp;
     }
 }

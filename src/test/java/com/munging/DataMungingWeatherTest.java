@@ -27,7 +27,9 @@ public class DataMungingWeatherTest {
 
     @Test
     public void testCanCompareAListOfSpacedNumbers() throws Exception {
-        List<String> myTestList = Arrays.asList("1 44 33", "2 99 98");
+        WeatherData w1 = new WeatherData("1", 33, 44);
+        WeatherData w2 = new WeatherData("2", 98, 99);
+        List<Data> myTestList = Arrays.asList(w1, w2);
         Assert.assertThat(dataMungingWeather.doCompare(myTestList), is("2"));
     }
 
@@ -40,27 +42,6 @@ public class DataMungingWeatherTest {
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
         Assert.assertThat(dataMungingWeather.doCompare(
                 dataMungingWeather.cleanUpStream(
-                        dataMungingWeather.readFileLines())), is("14"));
-    }
-
-    @Test
-    public void testCanCleanUpAListOfStrings() throws Exception {
-        List<String> myTestList = Arrays.asList("1 44* 33", "2 99 98", "a f b d e", "1* 23 44");
-        Assert.assertThat(dataMungingWeather.cleanUpStream(myTestList.stream()), is(Arrays.asList("1 44 33", "2 99 98", "1 23 44")));
-    }
-
-    @Test
-    public void testDoCompareWithWeatherData() throws Exception {
-        List<String> myTestList = Arrays.asList("1 44 33", "2 99 98");
-        Assert.assertThat(dataMungingWeather.doCompareWeatherData(
-                dataMungingWeather.cleanUpStreamWeatherData(
-                        myTestList.stream())), is("2"));
-    }
-
-    @Test
-    public void testCanCompareTheLinesReadFromTheFileWithWeatherData() throws Exception {
-        Assert.assertThat(dataMungingWeather.doCompareWeatherData(
-                dataMungingWeather.cleanUpStreamWeatherData(
                         dataMungingWeather.readFileLines())), is("14"));
     }
 }

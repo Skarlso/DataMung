@@ -1,7 +1,9 @@
 package com.munging;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class DataMungingFootball extends Munger {
@@ -10,29 +12,23 @@ public class DataMungingFootball extends Munger {
         return super.readFileLines("football.dat");
     }
 
-    public List<String> cleanUpStream(Stream<String> dirtyStream) throws IOException {
-        return super.cleanUpStream(dirtyStream, '-');
+    public List<Data> cleanUpStream(Stream<String> dirtyStream) throws IOException {
+        return super.cleanUpStream(dirtyStream, '-', gatherFootballData);
     }
 
-    public String doCompare(List<String> myTestList) {
-        int teamNameRow = 1;
-        int scoreFor = 6;
-        int scoredAgainst = 7;
-
-        String teamName = "";
-        int smallest = Integer.MAX_VALUE;
-        for (String line : myTestList) {
-            String[] splitRow = line.split("\\s+");
-            String name = splitRow[teamNameRow];
-            int max = Integer.parseInt(splitRow[scoreFor]);
-            int min = Integer.parseInt(splitRow[scoredAgainst]);
-            if ((max - min) < smallest) {
-                smallest = max - min;
-                teamName = name;
-            }
-        }
-
+    public String doCompare(List<Data> footballDatas) {
+        String teamName = ((FootballData)footballDatas.stream().min(Comparator.comparing(Data::getDifference)).get()).teamName;
         return teamName;
-
     }
+
+    public Function<String, Data> gatherFootballData = line -> {
+        String[] fields = line.split("\\s+");
+        String teamName = fields[1];
+        String score = fields[6];
+        String against = fields[7];
+        return new FootballData (
+                teamName,
+                Integer.parseInt(against),
+                Integer.parseInt(score));
+    };
 }

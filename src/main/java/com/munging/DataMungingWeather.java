@@ -15,7 +15,7 @@ public class DataMungingWeather extends Munger {
     }
 
     public String doCompare(List<String> myTestList) {
-        int dayRow = 1;
+        int dayRow = 0;
         int minimumTemp = 1;
         int maximumTemp = 2;
 

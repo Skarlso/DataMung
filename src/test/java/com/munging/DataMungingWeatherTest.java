@@ -48,4 +48,19 @@ public class DataMungingWeatherTest {
         List<String> myTestList = Arrays.asList("1 44* 33", "2 99 98", "a f b d e", "1* 23 44");
         Assert.assertThat(dataMungingWeather.cleanUpStream(myTestList.stream()), is(Arrays.asList("1 44 33", "2 99 98", "1 23 44")));
     }
+
+    @Test
+    public void testDoCompareWithWeatherData() throws Exception {
+        List<String> myTestList = Arrays.asList("1 44 33", "2 99 98");
+        Assert.assertThat(dataMungingWeather.doCompareWeatherData(
+                dataMungingWeather.cleanUpStreamWeatherData(
+                        myTestList.stream())), is("2"));
+    }
+
+    @Test
+    public void testCanCompareTheLinesReadFromTheFileWithWeatherData() throws Exception {
+        Assert.assertThat(dataMungingWeather.doCompareWeatherData(
+                dataMungingWeather.cleanUpStreamWeatherData(
+                        dataMungingWeather.readFileLines())), is("14"));
+    }
 }

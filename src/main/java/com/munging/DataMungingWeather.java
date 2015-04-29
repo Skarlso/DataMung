@@ -16,7 +16,7 @@ public class DataMungingWeather extends Munger {
         return super.cleanUpStream(dirtyStream, '*', gatherWeatherData);
     }
 
-    public String doCompare (List<Data> weatherDatas) {
+    public String returnMinimumDifference(List<Data> weatherDatas) {
         String dayName = ((WeatherData)weatherDatas.stream().min(Comparator.comparing(Data::getDifference)).get()).dayNumber;
         return dayName;
     }

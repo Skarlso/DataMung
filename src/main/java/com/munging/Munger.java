@@ -29,5 +29,5 @@ public abstract class Munger {
         return cleanList;
     }
 
-    public abstract String doCompare(List<Data> myTestList);
+    public abstract String returnMinimumDifference(List<Data> myTestList);
 }

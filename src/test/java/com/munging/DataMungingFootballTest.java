@@ -30,7 +30,7 @@ public class DataMungingFootballTest {
         FootballData f1 = new FootballData("Arsenal", 36, 87);
         FootballData f2 = new FootballData("Liverpool", 30, 80);
         List<Data> myTestList = Arrays.asList(f1, f2);
-        Assert.assertThat(dataMungingFootball.doCompare(myTestList), is("Liverpool"));
+        Assert.assertThat(dataMungingFootball.returnMinimumDifference(myTestList), is("Liverpool"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class DataMungingFootballTest {
 
     @Test
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
-        Assert.assertThat(dataMungingFootball.doCompare(
+        Assert.assertThat(dataMungingFootball.returnMinimumDifference(
                 dataMungingFootball.cleanUpStream(
                         dataMungingFootball.readFileLines())), is("Leicester"));
     }

@@ -13,7 +13,7 @@ public class FootballData implements Data {
     }
 
     public int getDifference() {
-        return maxScore - minScore;
+        return Math.abs(maxScore - minScore);
     }
 
     public String getTeamName() {

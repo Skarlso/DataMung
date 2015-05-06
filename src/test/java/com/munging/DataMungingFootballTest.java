@@ -42,7 +42,7 @@ public class DataMungingFootballTest {
     public void testCanCompareTheLinesReadFromTheFile() throws Exception {
         Assert.assertThat(((FootballData)dataMungingFootball.returnMinimumDifference(
                 dataMungingFootball.cleanUpStream(
-                        dataMungingFootball.readFileLines()))).getTeamName(), is("Leicester"));
+                        dataMungingFootball.readFileLines()))).getTeamName(), is("Aston_Villa"));
     }
 
 }

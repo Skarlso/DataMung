@@ -16,6 +16,12 @@ public class DataMungingWeather extends Munger {
         return super.cleanUpStream(dirtyStream, '*', gatherWeatherData);
     }
 
+    /**
+     * Give a way of adding a function here which determines how I would like to do a compare.
+     * Gives the client the ability to decide on the compare method.
+     * @param weatherDatas Weather data
+     * @return Data that is returned
+     */
     public Data returnMinimumDifference(List<Data> weatherDatas) {
         Data weatherData = weatherDatas.stream().min(Comparator.comparing(Data::getDifference)).get();
         return weatherData;
@@ -31,5 +37,4 @@ public class DataMungingWeather extends Munger {
                 Integer.parseInt(min),
                 Integer.parseInt(max));
     };
-
 }

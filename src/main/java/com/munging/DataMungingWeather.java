@@ -29,6 +29,7 @@ public class DataMungingWeather extends Munger {
 
     /**
     * Gather Weather Data.
+    * TODO: Fixed!
     */
     public Function<String, Data> gatherWeatherData = line -> {
         String[] fields = line.split("\\s+");

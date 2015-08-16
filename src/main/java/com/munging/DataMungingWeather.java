@@ -10,7 +10,7 @@ public class DataMungingWeather extends Munger {
 
     /**
     * Updated comment to trigger merge conflict.
-    * Another update.
+    * This merge attempt should fail because of a merge conflict.
     * @return Stream of read file lines.
     */
     public Stream<String> readFileLines() throws IOException {

@@ -8,6 +8,10 @@ import java.util.stream.Stream;
 
 public class DataMungingWeather extends Munger {
 
+    /**
+    * Reads lines from a given resource and gives back a Stream.
+    * @return Stream of read file lines.
+    */
     public Stream<String> readFileLines() throws IOException {
         return super.readFileLines("weather.dat");
     }
